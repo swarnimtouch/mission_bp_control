@@ -101,8 +101,8 @@ class BannerController extends Controller
         // =========================
         // 🩺 SPECIALITY
         // =========================
-        imagettftext($bg1, $specSize, 0, 1450, 720, $lightBlue, $font, $speciality);
-        imagettftext($bg2, $specSize, 0, 1450, 720, $lightBlue, $font, $speciality);
+        imagettftext($bg1, $specSize, 0, 1450, 750, $lightBlue, $font, $speciality);
+        imagettftext($bg2, $specSize, 0, 1450, 750, $lightBlue, $font, $speciality);
 
         // =========================
         // 📅 DATE + TIME (ONLY IMAGE 1)
