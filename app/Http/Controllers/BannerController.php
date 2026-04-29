@@ -58,7 +58,7 @@ class BannerController extends Controller
         $white = imagecolorallocate($bg1, 255, 255, 255);  // main blue
         $dateText = date('jS F Y', strtotime($date));
 
-        $font = public_path('fonts/Poppins-Regular.ttf');
+        $font = public_path('fonts/Poppins-Bold.ttf');
 
         // =========================
         // 🔠 FONT SIZES
@@ -77,8 +77,8 @@ class BannerController extends Controller
             $bg1,
             $nameSize,
             0,
-            1470,
-            660,
+            1450,
+            680,
             $blue,
             $font,
             $doctorName
@@ -89,8 +89,8 @@ class BannerController extends Controller
             $bg2,
             $nameSize,
             0,
-            1470,
-            660,
+            1450,
+            680,
             $blue,
             $font,
             $doctorName
@@ -101,17 +101,27 @@ class BannerController extends Controller
         // =========================
         // 🩺 SPECIALITY
         // =========================
-        imagettftext($bg1, $specSize, 0, 1500, 720, $lightBlue, $font, $speciality);
-        imagettftext($bg2, $specSize, 0, 1500, 720, $lightBlue, $font, $speciality);
+        imagettftext($bg1, $specSize, 0, 1450, 720, $lightBlue, $font, $speciality);
+        imagettftext($bg2, $specSize, 0, 1450, 720, $lightBlue, $font, $speciality);
 
         // =========================
         // 📅 DATE + TIME (ONLY IMAGE 1)
         // =========================
         imagettftext($bg1, 36, 0, 629, 680, $white, $font, $dateText);
-        $timeFormatted = date('h:i A', strtotime($time));
+        $startTime = strtotime($time);
+
+// +1 hour add
+        $endTime = strtotime('+1 hour', $startTime);
+
+// format both
+        $startFormatted = date('h:i A', $startTime);
+        $endFormatted = date('h:i A', $endTime);
+
+// final text
+        $timeRange = $startFormatted . ' To ' . $endFormatted;
 
 // TIME TEXT
-        imagettftext($bg1, 34, 0, 629, 800, $white, $font, $timeFormatted);
+        imagettftext($bg1, 34, 0, 629, 800, $white, $font, $timeRange);
 
         $cleanName = preg_replace('/[^A-Za-z0-9\-]/', '_', $doctorName);
 
