@@ -59,13 +59,14 @@ class BannerController extends Controller
         $dateText = date('jS F Y', strtotime($date));
 
         $font = public_path('fonts/Poppins-Bold.ttf');
+        $fontRegular = public_path('fonts/Poppins-Regular.ttf');
 
         // =========================
         // 🔠 FONT SIZES
         // =========================
         $maxNameWidth = 400;
 
-        $nameSize = $this->fitTextToWidth($doctorName, $font, $maxNameWidth, 32);
+        $nameSize = $this->fitTextToWidth($doctorName, $font, $maxNameWidth, 25);
 
         $specSize = 26;
         $dateSize = 28;
@@ -78,7 +79,7 @@ class BannerController extends Controller
             $nameSize,
             0,
             1450,
-            680,
+            690,
             $blue,
             $font,
             $doctorName
@@ -90,20 +91,19 @@ class BannerController extends Controller
             $nameSize,
             0,
             1450,
-            680,
+            690,
             $blue,
             $font,
             $doctorName
         );
         $maxSpecWidth = 420;
-        $specSize = $this->fitTextToWidth($speciality, $font, $maxSpecWidth, 30);
+        $specSize = $this->fitTextToWidth($speciality, $font, $maxSpecWidth, 25);
 
         // =========================
         // 🩺 SPECIALITY
         // =========================
-        imagettftext($bg1, $specSize, 0, 1450, 750, $lightBlue, $font, $speciality);
-        imagettftext($bg2, $specSize, 0, 1450, 750, $lightBlue, $font, $speciality);
-
+        imagettftext($bg1, $specSize, 0, 1450, 770, $lightBlue, $fontRegular, $speciality);
+        imagettftext($bg2, $specSize, 0, 1450, 770, $lightBlue, $fontRegular, $speciality);
         // =========================
         // 📅 DATE + TIME (ONLY IMAGE 1)
         // =========================
