@@ -96,7 +96,7 @@ class BannerController extends Controller
             $doctorName
         );
         $maxSpecWidth = 420;
-        $specSize = $this->fitTextToWidth($speciality, $font, $maxSpecWidth, 40);
+        $specSize = $this->fitTextToWidth($speciality, $font, $maxSpecWidth, 30);
 
         // =========================
         // 🩺 SPECIALITY
