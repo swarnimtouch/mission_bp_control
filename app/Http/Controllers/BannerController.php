@@ -78,8 +78,8 @@ class BannerController extends Controller
             $bg1,
             $nameSize,
             0,
-            1450,
-            690,
+            1480,
+            700,
             $blue,
             $font,
             $doctorName
@@ -90,17 +90,17 @@ class BannerController extends Controller
             $bg2,
             $nameSize,
             0,
-            1450,
-            690,
+            1480,
+            700,
             $blue,
             $font,
             $doctorName
         );
-        $specBoxX = 1435;
-        $specBoxY = 760;
-        $specBoxWidth = 330;
-        $specSize = 18;
-        $lineHeight = 26;
+        $specBoxX = 1460;
+        $specBoxY = 745;
+        $specBoxWidth = 310;
+        $specSize = 19;
+        $lineHeight = 25;
 
         $this->drawCenteredWrappedText($bg1, $speciality, $fontRegular, $specSize, $specBoxX, $specBoxY, $specBoxWidth, $lineHeight, $lightBlue);
         $this->drawCenteredWrappedText($bg2, $speciality, $fontRegular, $specSize, $specBoxX, $specBoxY, $specBoxWidth, $lineHeight, $lightBlue);
