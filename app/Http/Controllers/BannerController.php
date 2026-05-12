@@ -96,14 +96,15 @@ class BannerController extends Controller
             $font,
             $doctorName
         );
-        $maxSpecWidth = 420;
-        $specSize = $this->fitTextToWidth($speciality, $font, $maxSpecWidth, 25);
+        $specBoxX = 1435;
+        $specBoxY = 760;
+        $specBoxWidth = 330;
+        $specSize = 18;
+        $lineHeight = 26;
 
-        // =========================
-        // 🩺 SPECIALITY
-        // =========================
-        imagettftext($bg1, $specSize, 0, 1450, 770, $lightBlue, $fontRegular, $speciality);
-        imagettftext($bg2, $specSize, 0, 1450, 770, $lightBlue, $fontRegular, $speciality);
+        $this->drawCenteredWrappedText($bg1, $speciality, $fontRegular, $specSize, $specBoxX, $specBoxY, $specBoxWidth, $lineHeight, $lightBlue);
+        $this->drawCenteredWrappedText($bg2, $speciality, $fontRegular, $specSize, $specBoxX, $specBoxY, $specBoxWidth, $lineHeight, $lightBlue);
+
         // =========================
         // 📅 DATE + TIME (ONLY IMAGE 1)
         // =========================
@@ -173,4 +174,50 @@ class BannerController extends Controller
 
         return $fontSize;
     }
+    private function drawCenteredWrappedText($image, $text, $font, $fontSize, $x, $y, $maxWidth, $lineHeight, $color)
+    {
+        $words = explode(' ', trim($text));
+        $lines = [];
+        $line = '';
+
+        foreach ($words as $word) {
+            $testLine = trim($line . ' ' . $word);
+            $box = imagettfbbox($fontSize, 0, $font, $testLine);
+            $width = $box[2] - $box[0];
+
+            if ($width <= $maxWidth) {
+                $line = $testLine;
+            } else {
+                if ($line !== '') {
+                    $lines[] = $line;
+                }
+                $line = $word;
+            }
+        }
+
+        if ($line !== '') {
+            $lines[] = $line;
+        }
+
+        foreach ($lines as $index => $lineText) {
+            $size = $fontSize;
+
+            do {
+                $box = imagettfbbox($size, 0, $font, $lineText);
+                $lineWidth = $box[2] - $box[0];
+
+                if ($lineWidth <= $maxWidth) {
+                    break;
+                }
+
+                $size--;
+            } while ($size > 10);
+
+            $textX = $x + (($maxWidth - $lineWidth) / 2);
+            $textY = $y + ($index * $lineHeight);
+
+            imagettftext($image, $size, 0, (int) $textX, (int) $textY, $color, $font, $lineText);
+        }
+    }
+
 }
