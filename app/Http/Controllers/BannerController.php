@@ -74,27 +74,33 @@ class BannerController extends Controller
         // =========================
         // 🧑‍⚕️ NAME
         // =========================
-        imagettftext(
+        $nameBoxX = 1380;
+        $nameBoxY = 700;
+        $nameBoxWidth = 500;
+        $nameLineHeight = 35;
+
+        $this->drawCenteredWrappedText(
             $bg1,
-            $nameSize,
-            0,
-            1480,
-            700,
-            $blue,
+            $doctorName,
             $font,
-            $doctorName
+            $nameSize,
+            $nameBoxX,
+            $nameBoxY,
+            $nameBoxWidth,
+            $nameLineHeight,
+            $blue
         );
 
-// NAME IMAGE 2
-        imagettftext(
+        $this->drawCenteredWrappedText(
             $bg2,
-            $nameSize,
-            0,
-            1480,
-            700,
-            $blue,
+            $doctorName,
             $font,
-            $doctorName
+            $nameSize,
+            $nameBoxX,
+            $nameBoxY,
+            $nameBoxWidth,
+            $nameLineHeight,
+            $blue
         );
         $specBoxX = 1460;
         $specBoxY = 745;
